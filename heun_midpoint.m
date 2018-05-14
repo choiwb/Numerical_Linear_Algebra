@@ -13,16 +13,16 @@ v_n(1) = 0;
 k = 3;
 
 switch k
-    case 1 % euler method 规过 k = 1老 锭
+    case 1 % euler method 
         for i = 1:N
             v_n(i+1) = v_n(i)+dt*(g-cd/m*abs(v_n(i))*v_n(i));
         end
-    case 2 % midpoint method 规过 k = 2老 锭
+    case 2 % midpoint method 
         for i = 1:N
             v_mid = v_n(i)+dt/2*(g-cd/m*abs(v_n(i))*v_n(i));
             v_n(i+1) = v_n(i)+dt*(g - cd/m*abs(v_mid)*v_mid);
         end
-    case 3 % heun's method 规过 k = 3 老 锭
+    case 3 % heun's method 规过 
         for i = 1:N
         f1 = (g - cd/m*abs(v_n(i))*v_n(i));
         v_1 = v_n(i)+dt*(f1);
