@@ -10,7 +10,8 @@ v_n(1) = 0;
 
 % k = 1;
 % k = 2;
-k = 3;
+% k = 3;
+k = 4;
 
 switch k
     case 1 % euler method 
@@ -22,12 +23,20 @@ switch k
             v_mid = v_n(i)+dt/2*(g-cd/m*abs(v_n(i))*v_n(i));
             v_n(i+1) = v_n(i)+dt*(g - cd/m*abs(v_mid)*v_mid);
         end
-    case 3 % heun's method ¹æ¹ý 
+    case 3 % heun's method 
         for i = 1:N
         f1 = (g - cd/m*abs(v_n(i))*v_n(i));
         v_1 = v_n(i)+dt*(f1);
         f2 = (g - cd/m*abs(v_1)*v_1); 
         v_n(i+1) = v_n(i)+dt*((f1+f2)/2);
+        end
+    case 4 % runge kutta 4th order method
+        for i = 1:N
+            k1 = (g-cd/m*abs(v_n(i))*v_n(i));
+            k2 = (g-cd/m*abs(v_n(i)+k1*dt/2)*(v_n(i)+k1*dt/2));
+            k3 = (g-cd/m*abs(v_n(i)+k2*dt/2)*(v_n(i)+k2*dt/2));
+            k4 = (g-cd/m*abs(v_n(i)+k3*dt)*(v_n(i)+k3*dt));
+            v_n(i+1) = v_n(i)+dt/6*(k1+2*k2+2*k3+k4);
         end
 end
 
