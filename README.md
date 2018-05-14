@@ -7,3 +7,5 @@ textbook : Numerical Analysis Mathematics of Scientific Computing by David Kinca
 - Euler method
 - Midpoint method
 - Heun's method
+- Runge kutta 4th order method
+- Lorenz equation
