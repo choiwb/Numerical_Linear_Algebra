@@ -1,21 +1,23 @@
-% Solve over time interval [0,100] with initial conditions [1,1,1]
-% 'f' is set of differential equations
-% 'a' is array containing x, y, and z variables
-% 't' is time variable
-
-% sigma = 10;
-sigma = 14;
-
-beta = 8/3;
-rho = 28;
+sigma = 10; beta = 8/3; rho = 228;
 f = @(t,a) [-sigma*a(1) + sigma*a(2); rho*a(1) - a(2) - a(1)*a(3); -beta*a(3) + a(1)*a(2)];
-
-% [t,a] = ode45(f,[0 100],[1 1 1]);     % Runge-Kutta 4th/5th order ODE solver
-% [t,a] = ode45(f,[0 100],[5 5 5]);     % Runge-Kutta 4th/5th order ODE solver
-[t,a] = ode45(f,[0 100],[5.001 5 5]);     % Runge-Kutta 4th/5th order ODE solver
+[t,a] = ode45(f,[0 100], [1 1 1]);
 
 figure(1)
-plot3(a(:,1),a(:,2),a(:,3))
-xlabel('x');ylabel('y');zlabel('z');grid
+plot(t,a(:,1), ':', t,a(:,2), '--',t,a(:,3), '-')
+title('Time series')
+legend('x','y','z')
 
+figure(2)
+plot3(a(:,1),a(:,2),a(:,3),'m');
+title('3D Phase plane')
 
+figure(3)
+subplot(311)
+plot(a(:,1),a(:,2))
+title('2D Phase plane x-y')
+subplot(312)
+plot(a(:,1),a(:,3));
+title('2D Phase plane x-z')
+subplot(313)
+plot(a(:,2),a(:,3))
+title('2D Phase plane y-z')
